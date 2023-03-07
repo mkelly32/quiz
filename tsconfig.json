@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"rootDir": ".",
+		"outDir": "./dist/",
+		"moduleResolution": "node",
+		"module": "ES2022",
+		"target": "ES2022",
+		"allowSyntheticDefaultImports": true,
+		"noFallthroughCasesInSwitch": true,
+		"resolveJsonModule": true,
+		"noImplicitAny": true,
+		"jsx": "react",
+		"types": ["jest", "node"],
+		"allowJs": false,
+		"sourceMap": true,
+		"esModuleInterop": true
+	}
+}

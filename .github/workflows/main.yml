@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy Production
+
+# Triggers the workflow on push to the "production" branch
+on:
+  push:
+    branches: [ "production" ]
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Description
+        run: echo Deploying Assests to AWS
+    
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with: 
+          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.SECRET_KEY }}
+          aws-region: eu-west-1
+          
+      - name: Install Modules
+        run: npm ci
+      - name: Test
+        run: npm run test
+      - name: Build 
+        run: npm run build
+      - name: Deploy
+        run: aws s3 sync ./dist s3://${{ secrets.BUCKET_ID }}
+      - name: Create Cloudfront Invalidation
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID}} --paths "/*"

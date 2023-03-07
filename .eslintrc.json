@@ -1,0 +1,32 @@
+{
+	"ignorePatterns": ["webpack.*.js", "./dist/**"],
+	"extends": [
+		"eslint:recommended",
+		"prettier",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:react/recommended",
+		"plugin:react-hooks/recommended"
+	],
+	"plugins": ["@typescript-eslint"],
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 11,
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"project": "./tsconfig.json"
+	},
+	"env": {
+		"browser": true,
+		"es6": true,
+		"jest": true,
+		"node": true
+	},
+	"settings": {
+		"react": {
+			"pragma": "React",
+			"version": "detect"
+		}
+	}
+}
